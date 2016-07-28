@@ -1,0 +1,33 @@
+@import "vars";
+
+body {
+  margin: 40px;
+  color: @text-color;
+  background: @bg-color;
+}
+.product-list{
+	width: 960px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:  center;
+}
+
+.product-item{
+	width: 300px;
+	
+  &__title{
+  	padding:10px 0;
+  	text-transform: uppercase;
+  	font-weight:bold;
+  	text-align: center;
+  }
+
+  &__price{
+  	font-style:italic;
+  	text-align: center;
+     _price{
+    	font-weight:bold;
+    }
+  } 
+}  
+  

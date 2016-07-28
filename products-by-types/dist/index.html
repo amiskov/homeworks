@@ -5,6 +5,8 @@
     <title>Товары</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.css">
+
 </head>
 <body>
 <div id="sale"></div>
@@ -13,6 +15,20 @@
 
 <script type="text/template" id="productTemplate">
     <!-- Ваш шаблон. Код можно менять тлько внутри этого тега <script>. -->
+    <div class="container">
+         <h2><%=title%></h2>
+         <div class="product-list row">
+            <% _.each(products, function(item) { %>
+                <div class="product-item">
+                <div class="product-item__image">
+                	<img src="media/products/<%=item.pic%>" alt="">
+                </div>
+                    <div class="product-item__title"><%=item.name%></div>
+                    <div class="product-item__price">Цена: <span class="price"><%=item.price%>р</span></div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
@@ -20,6 +36,6 @@
         integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-<script src="script.js"></script>
+<script src="/js/all.js"></script>
 </body>
 </html>
