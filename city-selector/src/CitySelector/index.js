@@ -1,2 +1,2 @@
 // Your code...
-alert('This is my solution!')
+alert('This is my solution from branch!')
