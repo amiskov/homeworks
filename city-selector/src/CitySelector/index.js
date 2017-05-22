@@ -1,23 +1,29 @@
 const $ = require('jquery');
-const {renderButton, renderRegions, renderLocalities, renderSaveForm} = require('./templates')('city-selector');
 require('./style.less');
 
-// Можно обновлять форму по кастомному событию, которое будут генерить регионы и
-// нас. пункты при выделении. В это событие будет передаваться id региона и название города
+const mainClass = 'city-selector';
+const activeClass = '_active';
+
+const {renderButton, renderRegions, renderLocalities, renderSaveForm} = require('./templates')(mainClass);
 
 class CitySelector {
     constructor(options) {
         const {elementId, regionsUrl, localitiesUrl, saveUrl} = options;
 
         this.$container = $('#' + elementId)
-            .addClass('city-selector')
+            .addClass(mainClass)
             .html(renderButton());
 
         this.$container
             .on('click', '.js-select-btn', {regionsUrl}, this.loadRegions.bind(this))
             .on('click', '.js-region', {localitiesUrl}, this.loadLocalities.bind(this))
             .one('click', '.js-locality', {saveUrl}, this.showSaveForm.bind(this))
-            .on('click', '.js-locality', activateTarget);
+            .on('click', '.js-locality', this.activateTarget.bind(this))
+            .on('selection:update', {
+                // сохранять id региона и название пункта в this.$container.data
+                regionId: this.$container.find('.js-region._active').data('id'),
+                localityName: this.$container.find('.js-locality._active').text()
+            }, this.fillFormFields.bind(this));
     }
 
     loadRegions(ev) {
@@ -35,7 +41,7 @@ class CitySelector {
                 .append(renderLocalities(resp.list));
         });
 
-        activateTarget(ev);
+        this.activateTarget(ev);
     }
 
     showSaveForm(ev) {
@@ -55,30 +61,32 @@ class CitySelector {
         });
     }
 
+    fillFormFields(ev) {
+        console.log(ev.data);
+        const {regionId, localityName} = ev.data;
+        console.log(regionId, localityName);
+
+        const $form = $('#saveForm');
+
+        $form.find('[name="region"]').val(regionId);
+        $form.find('[name="locality"]').val(localityName);
+    }
+
+    activateTarget(ev) {
+        const $el = $(ev.currentTarget);
+
+        $el
+            .addClass(activeClass)
+            .siblings().removeClass(activeClass);
+
+        this.$container.triggerHandler('selection:update');
+    }
+
     destroy() {
         this.$container.remove();
         // если бы создавали из существующего кода HTML, то убирали бы обработчики событий
         // and then delete class instance: `delete citySelectorObj`
     }
-}
-
-function fillFormFields($regions, $localities) {
-    const regionId = $regions.filter('._active').data('id');
-    const localityName = $localities.filter('._active').text();
-
-    const $form = $('#saveForm');
-    $form.find('[name="region"]').val(regionId);
-    $form.find('[name="locality"]').val(localityName);
-}
-
-function activateTarget(ev) {
-    const $el = $(ev.currentTarget);
-
-    $el
-        .addClass('_active')
-        .siblings().removeClass('_active');
-
-    fillFormFields($('.js-region'), $('.js-locality'));
 }
 
 
