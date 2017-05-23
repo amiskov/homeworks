@@ -4,7 +4,7 @@ let citySelector;
 
 
 $('#citySelector').on('click', () => {
-    alert('test');
+    // alert('test');
 });
 
 const $info = $('#info');
