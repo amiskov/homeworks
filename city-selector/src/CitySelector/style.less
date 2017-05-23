@@ -1,4 +1,9 @@
 .city-selector {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
     &__btn {
         float: left;
     }
@@ -23,7 +28,21 @@
         margin: 0;
     }
 
+    &__save-form {
+        &._hidden {
+            display: none;
+        }
+    }
+
     ._active {
         background: #CCC;
     }
+}
+
+#citySelector {
+    min-height: 100px;
+}
+
+#info {
+    float: right;
 }
