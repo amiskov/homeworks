@@ -1,16 +1,16 @@
 const path = require('path');
 
 // JSON API Server
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
-
-server.use(middlewares);
-server.use(router);
-server.listen(3000, () => {
-    console.log('JSON Server is running on localhost:3000')
-});
+// const jsonServer = require('json-server');
+// const server = jsonServer.create();
+// const router = jsonServer.router('db.json');
+// const middlewares = jsonServer.defaults();
+//
+// server.use(middlewares);
+// server.use(router);
+// server.listen(3000, () => {
+//     console.log('JSON Server is running on localhost:3000')
+// });
 
 // Webpack Options
 module.exports = {
