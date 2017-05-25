@@ -125,5 +125,4 @@ function sendRequest(url) {
     });
 }
 
-
 module.exports = CitySelector;
