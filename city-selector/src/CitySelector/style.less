@@ -1,5 +1,48 @@
+.city-selector {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    &__btn {
+        float: left;
+    }
+
+    &__regions {
+        float: left;
+    }
+
+    &__localities {
+        float: left;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0 20px;
+        padding: 0;
+    }
+
+    li {
+        cursor: pointer;
+        padding: 5px;
+        margin: 0;
+    }
+
+    &__save-form {
+        &._hidden {
+            display: none;
+        }
+    }
+
+    ._active {
+        background: #CCC;
+    }
+}
+
+#citySelector {
+    min-height: 100px;
+}
+
 #info {
     float: right;
 }
-
-// Your code...
