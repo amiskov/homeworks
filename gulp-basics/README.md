@@ -4,7 +4,7 @@
 В сборке должны быть следующие ништяки:
 
 * LESS в качестве препроцессора.
-* PHP как шаблонизатор (см. `[gulp-connect-php](https://www.npmjs.com/package/gulp-connect-php)`).
+* PHP как шаблонизатор (см. [gulp-connect-php](https://www.npmjs.com/package/gulp-connect-php)).
 * Автопрефиксер.
 * Автоперезагрузка страницы при изменении HTML/CSS/JS.
 * Объединение всех JS-файлов в один `js/all.js`.
